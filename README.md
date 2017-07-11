@@ -8,11 +8,11 @@ It is already X509 V3 SubjectAltName (RFC 2818) compliant, so forget about
 browser errors.
 
 
-It also convert the **certificates into PEM and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
+It also converts the **certificates into PEM and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
 
 
 ```
-Author: Daniel A. Avelino <daniel (dot) avelino at globalhitss dot com dot br>
+Author: Daniel A. Avelino 
 
 Licence: Creative Commons ShareAlike 4.0.
 
@@ -20,11 +20,9 @@ Release: Jul-2017
 
 ```
 
-This project aims to create an internal SSL Certificate Authority to sign test
-SSL certificates.
+This project aims to create an internal SSL Certificate Authority, apt to sign test SSL certificates.
 
-It will ensure a minimal level of security when deal with sensitive
-information transportation.
+It will ensure a minimal level of security when deal with sensitive information transportation.
 
 The idea is to provide an internal Public Key Infrastructure (PKI), a Root
 Certification Authority and pertinent documentation to provide trust between 
