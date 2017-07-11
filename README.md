@@ -28,7 +28,7 @@ The idea is to provide an internal Public Key Infrastructure (PKI), a Root
 Certification Authority and pertinent documentation to provide trust between 
 this CA and PKI participants (HITSS internals).
 
-Usage:
+# Usage:
 
 1. ```./root-CA-create.bsh```
 
