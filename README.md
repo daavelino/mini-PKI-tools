@@ -14,7 +14,7 @@ It also converts the **certificates into PEM and PKCS12 (.pfx) files**, so you d
 ```
 Author: Daniel A. Avelino 
 
-Licence: Creative Commons ShareAlike 4.0.
+License: Creative Commons ShareAlike 4.0.
 
 Release: Jul-2017
 
