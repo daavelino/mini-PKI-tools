@@ -8,7 +8,7 @@ It is already X509 V3 SubjectAltName (RFC 2818) compliant, so forget about
 browser errors.
 
 
-It also convert the certificates into PEM and PKCS12 (.pfx) files, so you don't have to worry about convert your certs anymore.
+It also convert the **certificates into PEM and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
 
 
 ```
