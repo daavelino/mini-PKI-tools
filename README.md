@@ -5,7 +5,7 @@ It is already X509 V3 SubjectAltName (RFC 2818) compliant, so forget about
 
 `NET::ERR_CERT_COMMON_NAME_INVALID`
 
-browser errors.
+Chrome browser error.
 
 
 It also converts the **certificates into PEM and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
