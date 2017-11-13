@@ -27,11 +27,12 @@ It all starts by creating your own Root Certification Authority. This enables yo
 
 ### 2. Creating certificate sign requests (csr):
 <br>
-To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs. 
+To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
 
-Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate. 
 
-If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**. 
+*Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.*
+
+If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**.
 
 Otherwise, web browsers (and other User-Agents) will not recognize it properly.
  
