@@ -76,6 +76,7 @@ If you notice that, for some reason, an issued certificate has been compromised 
 # TODO:
 
 * Add MultiSAN certificate easy generation support.
+* Add a configuration file to set default parameters like key size, cipher suite algorithms, etc and improve maintenance.
 
 <br><br>
 
@@ -104,9 +105,9 @@ This way, it not necessary to check ```./conf``` files for default values. The c
 
 <br>
 
-mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an iits objective is to
+mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an its objective is to
 
-    provide a  set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
+    provide a set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
 
 <br>
 
