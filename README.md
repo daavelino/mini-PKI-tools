@@ -1,47 +1,88 @@
 # Usage:
+<br>
 
-1. Creating the Root CA certificate: 
+### 1. Creating the Root CA certificate:
+<br>
 
-```./createRootCA```
+    $ ./createRootCA
+<br>
+   This creates your own **Root CA** and enables your organization to issue certificates to use into your internal/peers projects and test labs.
+<br><br>
 
+### 2. Creating certificate sign requests (csr):
+<br>
+Creates the sign request and prompts you to specify all x509 required fields according to your needs.  *If you already have a (.csr) file, skip this step* :
+<br><br>
 
-2. Creating certificate sign requests (csr) for a given Common Name [usually a web address full qualified domain name (fqdn)]:
+    $ ./csr <fqdn>
 
-  ```./csr <fqdn>```
+   e.g.: ```$ ./csr www.domain.com```
 
-  E.g.: ```./csr foo.domain.com```
-
-    2.1. If you need to generate WildCard requests, just type:
+ <br>
   
-    ```./csr -w <domain fqdn>```
+   **(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
 
-    E.g.: ```./csr -w domain.com```
+<br>
 
-
-3. Issuing a certificate signed by our root CA:
-
-  ```./issue <fqdn>```
-
-  E.g.: ```./issue foo.domain.com```
-
-Notice that it requires a certificate sign request provided by step 2.
+    $ ./csr -w <domain fqdn>
 
 
-4. Revoking an issued certificate:
 
-  ```./revoke <certificate file>```
+   e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
 
-  E.g.: ```./revoke ./certs/foo.domain.com/foo.domain.com.cer```
+<br>
 
+**(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
+
+<br><br>
+
+### 3. Issuing a certificate signed by our root CA:
+
+<br>
+
+Now it is time to sign the request using our CA:
+
+<br>
+
+    $ ./issue <fqdn>
+
+
+
+   e.g.: ```$ ./issue foo.domain.com```
+
+<br>
+
+   **(hint)**: notice that it requires a certificate sign request provided by step 2.
+
+<br><br>
+### 4. Revoking an issued certificate:
+
+<br>
+
+If you notice that, for some reason, an issued certificate has been compromised (lost its private key confidentiality, for example), there is no reason to trust it anymore so, revoke it:
+
+<br>
+
+    $ ./revoke <certificate file>
+
+   e.g.: ```$ ./revoke ./certs/foo.domain.com/foo.domain.com.cer```
+
+<br>
+
+   **(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
+ 
+<br><br>
 
 # TODO:
 
-Add MultiSAN certification easy generation support.
+* Add MultiSAN certificate easy generation support.
+
+<br><br>
 
 # Changelog:
 
-Nov-2017:
-* Now all issued certificates are stored at ./certs/\<fqdn\> for clearness and to follow OpenSSL standards.
+**Nov-2017:**
+* Now all issued certificates are stored at ```./certs/\<fqdn\>``` for clearness and to follow OpenSSL standards.
 
 * Also, the CA file structure is also following default OpenSSL, as indicated in openssl.conf.
 
@@ -50,51 +91,14 @@ Now it is possible to revocate any certificate issued by mini-PKI-tools and this
 
 * Now, when creating the Root CA it is required to specify the default parameters from CSR generation, to make it easy if you generate all the same structure.
 
-This way, it not necessary to check ./conf files for default values. The createRootCA procedure fill default values when create Root CA. But, it doesn't hurt to check it again. :D
+<br>
 
-Jun-2017:
-Launching mini-PKI-tools basic features.
+This way, it not necessary to check ```./conf``` files for default values. The createRootCA procedure fill default values when create Root CA. But, it doesn't hurt to check it again. :D
 
-# mini PKI tools: 
-a set of Linux openssl based scripts to run a mini (but functional) Public Key Infrastructure.
+**Jun-2017:**
+* Launching mini-PKI-tools basic features.
 
-It is already X509 V3 SubjectAltName (RFC 2818) compliant, so forget about
+<br>
 
-`NET::ERR_CERT_COMMON_NAME_INVALID`
+# mini PKI tools:
 
-Chrome browser error.
-
-
-It also converts the **certificates into PEM and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
-
-
-```
-Author: Daniel A. Avelino  <daavelino@gmail.com>
-
-License: Creative Commons ShareAlike 4.0.
-
-Release: Jul-2017
-Rev 0.2: Nov-2017
-
-```
-
-This project aims to create an internal SSL Certificate Authority, apt to sign test SSL certificates.
-
-It will ensure a minimal level of security when deal with sensitive information transportation.
-
-The idea is to provide an internal Public Key Infrastructure (PKI), a Root
-Certification Authority and pertinent documentation to provide trust between 
-this CA and PKI participants (HITSS internals).
-
-# Validation: 
-
-To chech the content of a certificate sign request, just do:
-
-```$ openssl req -text -noout -in <csr file>```
-
-and, to check the content of a certificate:
-
-```$ openssl x509 -text -noout -in <crt file>```
-
-
-Enjoy!
