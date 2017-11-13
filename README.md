@@ -1,4 +1,4 @@
-# TODO:]
+# TODO:
 
 Add MultiSAN certification easy generation support.
 
