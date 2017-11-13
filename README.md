@@ -18,6 +18,7 @@ or use the [Clone or Download](https://github.com/daavelino/mini-PKI-tools/archi
 
 ### 1. Creating the Root CA certificate:
 <br>
+All starts by creating your own Root Certification Authority. This enables you to sign certificates and set up a trust network based on it:
 
     $ ./createRootCA
 <br>
