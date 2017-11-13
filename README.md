@@ -9,6 +9,7 @@ Just type:
 <br>
 or 
 <br>
+
     $ wget https://github.com/daavelino/mini-PKI-tools/archive/master.zip
 <br>
 
@@ -19,6 +20,7 @@ or use the [Clone or Download](https://github.com/daavelino/mini-PKI-tools/archi
 <br>
 It all starts by creating your own Root Certification Authority. This enables you to sign certificates and set up a trust network based on it:
 <br>
+
     $ ./createRootCA
 <br>
    Now you own a **Root CA** and is apt to issue certificates to use into your internal/peers projects and test labs.
@@ -29,7 +31,7 @@ It all starts by creating your own Root Certification Authority. This enables yo
 To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
 
 <br>
-Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.
+>Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.
 <br>
 
 If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**.
@@ -38,6 +40,7 @@ Otherwise, web browsers (and other User-Agents) will not recognize it properly.
  
 *If you already have a (.csr) file, skip this step* :
 <br>
+
     $ ./csr <fqdn>
 
    e.g.: ```$ ./csr www.domain.com```
@@ -60,6 +63,7 @@ Otherwise, web browsers (and other User-Agents) will not recognize it properly.
 Now it is time to sign the request using our CA:
 
 <br>
+
     $ ./issue <fqdn>
 
 
@@ -75,6 +79,7 @@ Now it is time to sign the request using our CA:
 If you notice that, for some reason, an issued certificate has been compromised (lost its private key confidentiality, for example), there is no reason to trust it anymore so, revoke it:
 
 <br>
+
     $ ./revoke <certificate file>
 
    e.g.: ```$ ./revoke ./certs/foo.domain.com/foo.domain.com.cer```
