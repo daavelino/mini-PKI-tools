@@ -22,7 +22,7 @@ It all starts by creating your own Root Certification Authority. This enables yo
 <br>
 
     $ ./createRootCA
-<br>
+
    Now you own a **Root CA** and is apt to issue certificates to use into your internal/peers projects and test labs.
 <br>
 
@@ -31,14 +31,14 @@ It all starts by creating your own Root Certification Authority. This enables yo
 To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
 
 <br>
->Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.
+ Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.
 <br>
 
 If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**.
 
 Otherwise, web browsers (and other User-Agents) will not recognize it properly.
  
-*If you already have a (.csr) file, skip this step* :
+If you already have a (.csr) file, skip this step: 
 <br>
 
     $ ./csr <fqdn>
@@ -46,6 +46,7 @@ Otherwise, web browsers (and other User-Agents) will not recognize it properly.
    e.g.: ```$ ./csr www.domain.com```
 
 <br>
+
    **(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
 <br>
 
@@ -55,6 +56,7 @@ Otherwise, web browsers (and other User-Agents) will not recognize it properly.
    e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
 
 <br>
+
 **(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
 <br>
 
@@ -71,6 +73,7 @@ Now it is time to sign the request using our CA:
    e.g.: ```$ ./issue foo.domain.com```
 
 <br>
+
    **(hint)**: notice that it requires a certificate sign request provided by step 2.
 
 <br>
