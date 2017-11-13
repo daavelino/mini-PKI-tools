@@ -30,9 +30,10 @@ It all starts by creating your own Root Certification Authority. This enables yo
 To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
 
 
-<br>
+
 *Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.*
-<br>
+
+
 
 If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**.
 
