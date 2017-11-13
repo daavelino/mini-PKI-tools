@@ -6,31 +6,31 @@
 
 2. Creating certificate sign requests (csr) for a given Common Name [usually a web address full qualified domain name (fqdn)]:
 
-```./csr <fqdn>```
+  ```./csr <fqdn>```
 
-E.g.: ```./csr foo.domain.com```
+  E.g.: ```./csr foo.domain.com```
 
-2.1. If you need to generate WildCard requests, just type:
+  2.1. If you need to generate WildCard requests, just type:
 
-```./csr -w <domain fqdn>```
+  ```./csr -w <domain fqdn>```
 
 E.g.: ```./csr -w domain.com```
 
 
 3. Issuing a certificate signed by our root CA:
 
-```./issue <fqdn>```
+  ```./issue <fqdn>```
 
-E.g.: ```./issue foo.domain.com```
+  E.g.: ```./issue foo.domain.com```
 
 Notice that it requires a certificate sign request provided by step 2.
 
 
 4. Revoking an issued certificate:
 
-```./revoke <certificate file>```
+  ```./revoke <certificate file>```
 
-E.g.: ```./revoke ./certs/foo.domain.com/foo.domain.com.cer```
+  E.g.: ```./revoke ./certs/foo.domain.com/foo.domain.com.cer```
 
 
 # TODO:
