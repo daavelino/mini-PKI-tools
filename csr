@@ -74,11 +74,27 @@ generateCSR() {
           -out $fqdn.csr
 }
 
+createVerify() {
+  #### Creates verification tool for csr and keys:
+  CHECKFILE=$HOMEDIR/certs/$fqdn/checkCSR
+  echo -e "#!/bin/bash\n\n" >> $CHECKFILE
+  echo -e "openssl req -noout -text -in $HOMEDIR/certs/$fqdn/$fqdn.csr | less\nexit 0" >> $CHECKFILE
+
+  chmod +x $CHECKFILE
+
+  CHECKFILE=$HOMEDIR/certs/$fqdn/checkKey
+  echo -e "#!/bin/bash\n\n" >> $CHECKFILE
+  echo -e "openssl rsa -noout -text -in $HOMEDIR/certs/$fqdn/$fqdn.key | less\nexit 0" >> $CHECKFILE
+
+  chmod +x $CHECKFILE
+}
+
 main() {
   checkInput $1 $2 $3
   createStructure 
   createTmpConfigFile
   generateCSR
+  createVerify
   exit 0
 }
 

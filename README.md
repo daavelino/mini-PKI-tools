@@ -90,7 +90,19 @@ If you notice that, for some reason, an issued certificate has been compromised 
 * Introducing Certificate Revocation List features.
 Now it is possible to revocate any certificate issued by mini-PKI-tools and this procedure completes the mini-PKI-tools suite. Please check ./CA file structure.
 
-* Now, when creating the Root CA it is required to specify the default parameters from CSR generation, to make it easy if you generate all the same structure.
+* When creating the Root CA it is required to specify the default parameters from CSR generation, to make it easy if you generate all the same structure.
+
+* In each certificate directory, there is 3 verification files (checkCert, checkCSR and checkKey) to easy verification. Just type:
+
+<br>
+
+    $ checkCert
+    $ checkCSR
+    $ checkKey
+
+<br>
+
+to see its content. 
 
 <br>
 

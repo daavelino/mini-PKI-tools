@@ -51,10 +51,20 @@ openssl pkcs12 \
         -certfile $HOMEDIR/CA/cacert.pem
 }
 
+createVerify() {
+#### Creates verification tool for certificates:
+  #### Verify Certificates:
+  CHECKFILE=$HOMEDIR/certs/$FQDN/checkCert 
+  echo -e "#!/bin/bash\n\n" >> $CHECKFILE
+  echo -e "openssl x509 -noout -text -in $HOMEDIR/certs/$FQDN/$FQDN.cer | less\nexit 0" >> $CHECKFILE
+
+  chmod +x $CHECKFILE
+}
 
 main() {
   checkInput $1
   sign $1
+  createVerify
   exit 0
 }
 
