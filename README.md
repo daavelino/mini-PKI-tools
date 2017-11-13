@@ -3,6 +3,7 @@
 
 ### 0. Get the required files:
 <br>
+Just type:
 
     $ git clone https://github.com/daavelino/mini-pki-tools.git
 <br>
@@ -12,7 +13,7 @@ or
     $ wget https://github.com/daavelino/mini-PKI-tools/archive/master.zip
 <br>
 
-or use the 'Clone or Download' button at right.
+or use the [Clone or Download](https://github.com/daavelino/mini-PKI-tools/archive/master.zip) github page.
 <br><br>
 
 ### 1. Creating the Root CA certificate:
