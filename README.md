@@ -22,12 +22,16 @@ It all starts by creating your own Root Certification Authority. This enables yo
 
     $ ./createRootCA
 <br>
-   This creates your own **Root CA** and enables your organization to issue certificates to use into your internal/peers projects and test labs.
+   Now you own a **Root CA** and is apt to issue certificates to use into your internal/peers projects and test labs.
 <br><br>
 
 ### 2. Creating certificate sign requests (csr):
 <br>
-Creates the sign request and prompts you to specify all x509 required fields according to your needs.  *If you already have a (.csr) file, skip this step* :
+To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs. 
+
+Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate. If your intention is to issue a certificate to a **www.domain.com** address, remember to set **Common Name** as **www.domain.com**, otherwise, web browsers (and other User-Agents) will not recognize it properly.
+ 
+*If you already have a (.csr) file, skip this step* :
 <br><br>
 
     $ ./csr <fqdn>
