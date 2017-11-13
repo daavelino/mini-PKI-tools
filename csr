@@ -1,0 +1,86 @@
+#!/bin/bash
+
+#
+# Author: Daniel A. Avelino <daavelino@gmail.com>
+# License: Creative Commons ShareAlike 4.0
+# Publication: Jul-2017
+# Rev. 0.2: Nov-2017
+#
+
+#
+# Please, check for ./conf/ssl-default.conf for default values.
+#
+
+
+checkInput() {
+  #### Checking input structure:
+  if [[ ! $1 ]]; then
+    echo -e "\nUsage $0 [-w] <fqdn>\nwhere -w (optional) means a wildcard cert for a <fqdn> domain.\n"
+    exit 1
+  fi
+
+  if [[ $1 == "-w" ]];then
+    if [[ ! $2 ]]; then
+      echo -e "Please provide the address of the domain, e.g.\n$0 -w domain.com.br\n"
+      exit 1
+    fi
+
+    WILDCARD=true
+    fqdn=$2
+
+  else ### There is not '-w' argument.
+    fqdn=$1
+  fi
+
+  HOMEDIR=$(pwd)
+}
+
+createStructure() {
+  #### Creating directory structure:
+  if [[ -d ./certs/$fqdn ]]; then
+    echo "Directory ./certs/$fqdn exists and can contain important files. Please verify. Exiting."
+    exit -1
+  fi
+  
+  mkdir ./certs/$fqdn
+  cd ./certs/$fqdn
+}
+
+createTmpConfigFile() {
+  #### Creates a temporary openssl.conf file to insert subjectAltNames correctly.
+  echo $HOMEDIR/conf/ssl-default.conf 
+  cp $HOMEDIR/conf/ssl-default.conf openssl.conf
+  echo "[alt_names]" >> openssl.conf
+  
+  if [[ $WILDCARD == true ]]; then
+    echo "DNS.1 = *.$fqdn" >> openssl.conf
+  else
+    echo "DNS.1 = $fqdn" >> openssl.conf
+  fi
+
+}
+
+generateCSR() {
+  #### RSA key pair:
+  openssl genrsa \
+          -out $fqdn.key 4096
+  
+  #### Certificate Sign Request (CSR):
+  openssl req \
+          -sha256 \
+          -new \
+          -config openssl.conf \
+          -key $fqdn.key \
+          -out $fqdn.csr
+}
+
+main() {
+  checkInput $1 $2 $3
+  createStructure 
+  createTmpConfigFile
+  generateCSR
+  exit 0
+}
+
+####
+main $1 $2 $3

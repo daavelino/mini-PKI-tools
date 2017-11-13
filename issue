@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#
+# Author: Daniel A. Avelino <daavelino@gmail.com>
+# License: Creative Commons ShareAlike 4.0.
+# Publication: Jul-2017
+# Rev. 0.2: Nov-2017
+#
+
+checkInput() {
+if [[ ! $1 ]]; then
+  echo "Usage $0 <fqdn>"
+  exit 1
+fi
+
+HOMEDIR=$(pwd)
+CADIR=$HOMEDIR/CA
+
+FQDN=$1
+}
+
+sign() {
+#### Siging a CSR:
+
+openssl x509 \
+        -req \
+        -extfile $HOMEDIR/certs/$FQDN/openssl.conf \
+        -extensions v3_req \
+        -days 365 \
+        -CA $HOMEDIR/CA/cacert.pem \
+        -CAkey $HOMEDIR/CA/private/cakey.pem \
+        -CAserial $HOMEDIR/CA/serial \
+        -CAcreateserial \
+        -in $HOMEDIR/certs/$FQDN/$FQDN.csr \
+        -out $HOMEDIR/certs/$FQDN/$FQDN.cer
+
+#### Converting to PEM:
+openssl x509 \
+        -inform pem \
+        -outform der \
+        -in $HOMEDIR/certs/$FQDN/$FQDN.cer \
+        -out $HOMEDIR/certs/$FQDN/$FQDN.pem
+
+
+#### Converting to PKCS12:
+openssl pkcs12 \
+        -export \
+        -out $HOMEDIR/certs/$FQDN/$FQDN.pfx \
+        -inkey $HOMEDIR/certs/$FQDN/$FQDN.key \
+        -in $HOMEDIR/certs/$FQDN/$FQDN.cer \
+        -certfile $HOMEDIR/CA/cacert.pem
+}
+
+
+main() {
+  checkInput $1
+  sign $1
+  exit 0
+}
+
+####
+main $1

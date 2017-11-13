@@ -1,3 +1,20 @@
+# TODO:]
+
+Add MultiSAN certification easy generation support.
+
+# Changelog:
+
+Nov-2017:
+Now all issued certificates are stored at ./certs/<fqdn>.
+
+Also, the CA file structure is following default OpenSSL, as indicated in openssl.conf.
+
+Introducing Certificate Revocation List features.
+Now it is possible to revocate any certificate issued by mini-PKI-tools and this procedure completes the mini-PKI-tools suite.
+
+Jun-2017:
+Launching mini-PKI-tools basic features.
+
 # mini PKI tools: 
 a set of Linux openssl based scripts to run a mini (but functional) Public Key Infrastructure.
 
@@ -12,11 +29,12 @@ It also converts the **certificates into PEM and PKCS12 (.pfx) files**, so you d
 
 
 ```
-Author: Daniel A. Avelino 
+Author: Daniel A. Avelino  <daavelino@gmail.com>
 
 License: Creative Commons ShareAlike 4.0.
 
 Release: Jul-2017
+Rev 0.2: Nov-2017
 
 ```
 
@@ -30,18 +48,21 @@ this CA and PKI participants (HITSS internals).
 
 # Usage:
 
-1. ```./root-CA-create.bsh```
+1. ```./createRootCA```
 
 creates the Root CA certificate. 
 
-2. ```./createRequest.bsh <fqdn>```
+2. ```./csr <fqdn>```
 
 creates the certificate sign request for a given web address (full qualified domain name).
 
-3. ```./issueCertificate.bsh <fqdn>```
+3. ```./issue <fqdn>```
 
 issues a certificate signed by the root CA for a given fqdn. It requires a certificate sign request provided by createRequest.bsh.
 
+4. ```./revoke <fqdn>```
+
+revokes the certificate associated to <fqdn>.
 
 # Optional: 
 

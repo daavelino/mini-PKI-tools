@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#
+# Author: Daniel A. Avelino <daavelino@gmail.com>
+# License: Creative Commons ShareAlike 4.0
+# Publication: Nov-2017
+#
+
+#
+# Please, check for ./conf/ssl-default.conf for default values.
+#
+
+checkInput(){
+if [[ ! $1 ]]; then
+  echo "Usage $0 <certificate file>"
+  exit 1
+fi
+
+HOMEDIR=$(pwd)
+CADIR=$HOMEDIR/CA
+
+CERTFILE=$1
+}
+
+revoke() {
+openssl ca \
+        -config $HOMEDIR/conf/ca-ssl-default.conf \
+        -revoke $CERTFILE 
+
+#### Generate a new crl file:
+openssl ca \
+        -gencrl \
+        -keyfile $HOMEDIR/CA/private/cakey.pem \
+        -cert $HOMEDIR/CA/cacert.pem \
+        -config $HOMEDIR/conf/ca-ssl-default.conf \
+        -out $CADIR/crl/ca.crl
+
+echo 
+echo "Please check at $CADIR/crl/ca.crl for the Certificate Revoke List."
+echo
+
+}
+
+main() {
+  checkInput $1
+  revoke $CERTFILE
+  exit 0
+}
+
+####
+main $1

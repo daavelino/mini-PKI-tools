@@ -128,32 +128,32 @@ string_mask = utf8only
 
 [ req_distinguished_name ]
 countryName			= Country Name (2 letter code)
-countryName_default		= BR
+countryName_default		= @@_countryName_default_@@
 countryName_min			= 2
 countryName_max			= 2
 
 stateOrProvinceName		= State or Province Name (full name)
-stateOrProvinceName_default	= Rio de Janeiro
+stateOrProvinceName_default	= @@_stateOrProvinceName_default_@@
 
 localityName			= Locality Name (eg, city)
-localityName_default		= Rio de Janeiro
+localityName_default		= @@_localityName_default_@@
 
 0.organizationName		= Organization Name (eg, company)
-0.organizationName_default	= Corporate Ltd.
+0.organizationName_default	= @@_organizationName_default_@@
 
 # we can do this but it is not needed normally :-)
 #1.organizationName		= Second Organization Name (eg, company)
 #1.organizationName_default	= World Wide Web Pty Ltd
 
 organizationalUnitName		= Organizational Unit Name (eg, section)
-organizationalUnitName_default	= Information Security Unity.
+organizationalUnitName_default	= @@_organizationalUnityName_default_@@
 
 commonName			= Common Name (e.g. server FQDN or YOUR name)
-commonName_default		= Corporate Internal Root Certification Authority.
+commonName_default		= @@_commonName_default_@@
 commonName_max			= 64
 
 emailAddress			= Email Address
-emailAddress_default		= seginfo@corporate.com
+emailAddress_default		= @@_emailAddress_default_@@
 emailAddress_max		= 64
 
 # SET-ex3			= SET extension number 3
