@@ -92,9 +92,8 @@ Now it is possible to revocate any certificate issued by mini-PKI-tools and this
 
 * When creating the Root CA it is required to specify the default parameters from CSR generation, to make it easy if you generate all the same structure.
 
-* In each certificate directory, there is 3 verification files (checkCert, checkCSR and checkKey) to easy verification. Just type:
+* In each certificate directory, there is 3 verification files (checkCert, checkCSR and checkKey) to easy visualization of their content. Just type:
 
-<br>
 
     $ checkCert
     $ checkCSR
@@ -102,7 +101,7 @@ Now it is possible to revocate any certificate issued by mini-PKI-tools and this
 
 <br>
 
-to see its content. 
+into ```./certs/<fqdn>``` directory to see if everything is ok. 
 
 <br>
 
