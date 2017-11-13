@@ -5,12 +5,16 @@ Add MultiSAN certification easy generation support.
 # Changelog:
 
 Nov-2017:
-Now all issued certificates are stored at ./certs/<fqdn>.
+* Now all issued certificates are stored at ./certs/<fqdn>.
 
-Also, the CA file structure is following default OpenSSL, as indicated in openssl.conf.
+* Also, the CA file structure is following default OpenSSL, as indicated in openssl.conf.
 
-Introducing Certificate Revocation List features.
+* Introducing Certificate Revocation List features.
 Now it is possible to revocate any certificate issued by mini-PKI-tools and this procedure completes the mini-PKI-tools suite.
+
+* Now, when creating the Root CA it is required to specify the default parameters from CSR generation, to make it easy if you generate all the same structure.
+
+* And now it not necessary to check ./conf files for default values. The createRootCA procedure fill default values when create Root CA. But, it doesn't hurt to check it again. :D
 
 Jun-2017:
 Launching mini-PKI-tools basic features.
@@ -53,18 +57,27 @@ this CA and PKI participants (HITSS internals).
 creates the Root CA certificate. 
 
 2. ```./csr <fqdn>```
+E.g.: ```./csr foo.domain.com```
 
 creates the certificate sign request for a given web address (full qualified domain name).
 
+2.1. If you need to generate WildCard requests, just type:
+```./csr -w <domain fqdn>```
+E.g.: ```./csr -w domain.com```
+
+
 3. ```./issue <fqdn>```
+E.g.: ```./issue foo.domain.com```
 
 issues a certificate signed by the root CA for a given fqdn. It requires a certificate sign request provided by createRequest.bsh.
 
-4. ```./revoke <fqdn>```
+4. ```./revoke <certificate file>```
+E.g.: ```./revoke ./certs/foo.domain.com/foo.domain.com.cer```
 
-revokes the certificate associated to <fqdn>.
+revokes the certificate <certificate file>.
 
-# Optional: 
+
+# Validation: 
 
 To chech the content of a certificate sign request, just do:
 
@@ -73,18 +86,6 @@ To chech the content of a certificate sign request, just do:
 and, to check the content of a certificate:
 
 ```$ openssl x509 -text -noout -in <crt file>```
-
-
-# PLEASE, PLEASE, PLEASE!
-Check all ./conf files to **set default values**.
-
-For instance, to set your locality default to Sao Paulo/Sao Paulo, change the following line in the ./conf files:
-
-
-```stateOrProvinceName_default 	= Sao Paulo```
-
-```localityName_default 	= Sao Paulo```
-
 
 
 Enjoy!
