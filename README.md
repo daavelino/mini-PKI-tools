@@ -102,3 +102,32 @@ This way, it not necessary to check ```./conf``` files for default values. The c
 
 # mini PKI tools:
 
+<br>
+
+mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an iits objective is to
+
+    provide a  set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
+
+<br>
+
+All certificates issued by mini PKI are already X509 **V3** (RFC 2818) compliant, so forget about
+
+`NET::ERR_CERT_COMMON_NAME_INVALID`
+
+```SubjectAltName``` Chrome browser error.
+
+<br>
+
+For your convinience, it also converts the **certificates into PEM (.pem) and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
+
+<br><br>
+
+```
+Author: Daniel Avelino  <daavelino@gmail.com>
+
+License: Creative Commons ShareAlike 4.0.
+
+Release: Jul-2017
+Rev 0.2: Nov-2017
+```
+<br><br>
