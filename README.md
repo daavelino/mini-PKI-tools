@@ -1,6 +1,7 @@
 # Usage:
 
 1. Creating the Root CA certificate: 
+
 ```./createRootCA```
 
 
@@ -10,11 +11,11 @@
 
   E.g.: ```./csr foo.domain.com```
 
-  2.1. If you need to generate WildCard requests, just type:
+    2.1. If you need to generate WildCard requests, just type:
+  
+    ```./csr -w <domain fqdn>```
 
-  ```./csr -w <domain fqdn>```
-
-E.g.: ```./csr -w domain.com```
+    E.g.: ```./csr -w domain.com```
 
 
 3. Issuing a certificate signed by our root CA:
