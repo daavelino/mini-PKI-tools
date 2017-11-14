@@ -7,9 +7,7 @@ Just type:
 
     $ git clone https://github.com/daavelino/mini-pki-tools.git
 
-
 or 
-
 
     $ wget https://github.com/daavelino/mini-PKI-tools/archive/master.zip
 
