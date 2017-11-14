@@ -37,7 +37,7 @@ To generate the CSR file, type:
 
     $ ./csr <fqdn>
 
-    e.g.: ```$ ./csr www.domain.com```
+    e.g.: $ ./csr www.domain.com
 
 <br>
 
@@ -45,7 +45,7 @@ To generate the CSR file, type:
 
     $ ./csr -w <domain fqdn>
 
-    e.g.: ```$ ./csr -w domain.com```, 
+    e.g.: $ ./csr -w domain.com, 
 
 to create a request for **\*.domain.com**.
 
@@ -62,7 +62,7 @@ Now it is time to sign the request using our CA:
 
     $ ./issue <fqdn>
 
-   e.g.: ```$ ./issue foo.domain.com```
+    e.g.: $ ./issue foo.domain.com
 
 <br>
 
@@ -77,7 +77,7 @@ If you notice that, for some reason, an issued certificate has been compromised 
 
     $ ./revoke <certificate file>
 
-   e.g.: ```$ ./revoke ./certs/foo.domain.com/foo.domain.com.cer```
+    e.g.: $ ./revoke ./certs/foo.domain.com/foo.domain.com.cer
 <br>
 
    **(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
