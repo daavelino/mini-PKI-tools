@@ -24,7 +24,7 @@ sign() {
 
 openssl x509 \
         -req \
-        -extfile $HOMEDIR/certs/$FQDN/openssl.conf \
+        -extfile $HOMEDIR/certs/$FQDN/openssl.cnf \
         -extensions v3_req \
         -days 365 \
         -CA $HOMEDIR/CA/cacert.pem \

@@ -8,7 +8,7 @@
 #
 
 #
-# Please, check ./conf/ca-ssl-default.conf for default values.
+# Please, check ./conf/ca-ssl-default.cnf for default values.
 #
 
 
@@ -25,7 +25,7 @@ createStructure() {
 }
 
 setupCA() {
-  #### Sets the default openssl.conf x509 fields.
+  #### Sets the default openssl.cnf x509 fields.
   
   echo -e "\n\nPlease provide the default information for your root CA:\n\n"
   echo -n "Country Name (2 letter code): "
@@ -43,8 +43,8 @@ setupCA() {
   echo -n "Email Address: "
   read emailAddress_default
 
-  #### create ca-ssl-default.conf file:
-  TEMPLATE=$HOMEDIR/conf/ca-ssl-default.conf.tmpl
+  #### create ca-ssl-default.cnf file:
+  TEMPLATE=$HOMEDIR/conf/ca-ssl-default.cnf.tmpl
   sed -e "s/@@_countryName_default_@@/$countryName_default/g" \
       -e "s/@@_stateOrProvinceName_default_@@/$stateOrProvinceName_default/g" \
       -e "s/@@_localityName_default_@@/$localityName_default/g" \
@@ -52,10 +52,10 @@ setupCA() {
       -e "s/@@_organizationalUnityName_default_@@/$organizationalUnitName_default/g" \
       -e "s/@@_commonName_default_@@/$commonName_default/g" \
       -e "s/@@_emailAddress_default_@@/$emailAddress_default/g" \
-      $TEMPLATE > $HOMEDIR/conf/ca-ssl-default.conf
+      $TEMPLATE > $HOMEDIR/conf/ca-ssl-default.cnf
 
-  #### create ssl-default.conf file:
-  TEMPLATE=$HOMEDIR/conf/ssl-default.conf.tmpl
+  #### create ssl-default.cnf file:
+  TEMPLATE=$HOMEDIR/conf/ssl-default.cnf.tmpl
   sed -e "s/@@_countryName_default_@@/$countryName_default/g" \
       -e "s/@@_stateOrProvinceName_default_@@/$stateOrProvinceName_default/g" \
       -e "s/@@_localityName_default_@@/$localityName_default/g" \
@@ -63,7 +63,7 @@ setupCA() {
       -e "s/@@_organizationalUnityName_default_@@/$organizationalUnitName_default/g" \
       -e "s/@@_commonName_default_@@/$commonName_default/g" \
       -e "s/@@_emailAddress_default_@@/$emailAddress_default/g" \
-      $TEMPLATE > $HOMEDIR/conf/ssl-default.conf
+      $TEMPLATE > $HOMEDIR/conf/ssl-default.cnf
 }
 
 createCA() {
@@ -75,7 +75,7 @@ createCA() {
   #### Certificate Sign Request (CSR):
   openssl req \
           -new \
-          -config $HOMEDIR/conf/ca-ssl-default.conf \
+          -config $HOMEDIR/conf/ca-ssl-default.cnf \
           -key $CADIR/private/cakey.pem \
           -out $CADIR/cacsr.csr
   
@@ -108,7 +108,7 @@ createRevokeList() {
           -gencrl \
           -keyfile $CADIR/private/cakey.pem \
           -cert $CADIR/cacert.pem \
-          -config $HOMEDIR/conf/ca-ssl-default.conf \
+          -config $HOMEDIR/conf/ca-ssl-default.cnf \
           -out $CADIR/crl/ca.crl 
 }
 

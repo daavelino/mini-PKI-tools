@@ -8,7 +8,7 @@
 #
 
 #
-# Please, check for ./conf/ssl-default.conf for default values.
+# Please, check for ./conf/ssl-default.cnf for default values.
 #
 
 
@@ -33,29 +33,34 @@ checkInput() {
   fi
 
   HOMEDIR=$(pwd)
+  CADIR=$HOMEDIR/CA
 }
 
 createStructure() {
   #### Creating directory structure:
-  if [[ -d ./certs/$fqdn ]]; then
-    echo "Directory ./certs/$fqdn exists and can contain important files. Please verify. Exiting."
+  if [[ -d $HOMEDIR/certs/$fqdn ]]; then
+    echo "Directory $HOMEDIR/certs/$fqdn exists and can contain important files. Please verify. Exiting."
     exit -1
   fi
   
-  mkdir ./certs/$fqdn
-  cd ./certs/$fqdn
+  mkdir -p $CADIR/certs/$fqdn
+  cd $CADIR/certs/$fqdn
 }
 
 createTmpConfigFile() {
-  #### Creates a temporary openssl.conf file to insert subjectAltNames correctly.
-  echo $HOMEDIR/conf/ssl-default.conf 
-  cp $HOMEDIR/conf/ssl-default.conf openssl.conf
-  echo "[alt_names]" >> openssl.conf
+  #### Creates a temporary openssl.cnf file to insert subjectAltNames correctly. If openssl.cnf cannot be found, it uses the machine default:
+  if [[ -f $HOMEDIR/conf/ssl-default.cnf ]]; then
+    cp $HOMEDIR/conf/ssl-default.cnf $HOMEDIR/certs/$fqdn/openssl.cnf
+  else
+    cp /etc/ssl/openssl.cnf $CADIR/certs/$fqdn/openssl.cnf
+  fi
+
+  echo "[alt_names]" >> $CADIR/certs/$fqdn/openssl.cnf
   
   if [[ $WILDCARD == true ]]; then
-    echo "DNS.1 = *.$fqdn" >> openssl.conf
+    echo "DNS.1 = *.$fqdn" >> $CADIR/certs/$fqdn/openssl.cnf
   else
-    echo "DNS.1 = $fqdn" >> openssl.conf
+    echo "DNS.1 = $fqdn" >> $CADIR/certs/$fqdn/openssl.cnf
   fi
 
 }
@@ -63,28 +68,28 @@ createTmpConfigFile() {
 generateCSR() {
   #### RSA key pair:
   openssl genrsa \
-          -out $fqdn.key 4096
+          -out $CADIR/certs/$fqdn/$fqdn.key 4096
   
   #### Certificate Sign Request (CSR):
   openssl req \
           -sha256 \
           -new \
-          -config openssl.conf \
-          -key $fqdn.key \
-          -out $fqdn.csr
+          -config $CADIR/certs/$fqdn/openssl.cnf \
+          -key $CADIR/certs/$fqdn/$fqdn.key \
+          -out $CADIR/certs/$fqdn/$fqdn.csr
 }
 
 createVerify() {
   #### Creates verification tool for csr and keys:
-  CHECKFILE=$HOMEDIR/certs/$fqdn/checkCSR
+  CHECKFILE=$CADIR/certs/$fqdn/checkCSR
   echo -e "#!/bin/bash\n\n" >> $CHECKFILE
-  echo -e "openssl req -noout -text -in $HOMEDIR/certs/$fqdn/$fqdn.csr | less\nexit 0" >> $CHECKFILE
+  echo -e "openssl req -noout -text -in $CADIR/certs/$fqdn/$fqdn.csr | less\nexit 0" >> $CHECKFILE
 
   chmod +x $CHECKFILE
 
-  CHECKFILE=$HOMEDIR/certs/$fqdn/checkKey
+  CHECKFILE=$CADIR/certs/$fqdn/checkKey
   echo -e "#!/bin/bash\n\n" >> $CHECKFILE
-  echo -e "openssl rsa -noout -text -in $HOMEDIR/certs/$fqdn/$fqdn.key | less\nexit 0" >> $CHECKFILE
+  echo -e "openssl rsa -noout -text -in $CADIR/certs/$fqdn/$fqdn.key | less\nexit 0" >> $CHECKFILE
 
   chmod +x $CHECKFILE
 }
