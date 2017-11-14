@@ -49,6 +49,10 @@ to create a request for **\*.domain.com**.
 
 **(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
 
+**(hint 3)**: If you need to generate **just** a CSR file, you can just type
+
+    $./csr <fqdn>
+
 
 ### 3. Issuing a certificate signed by our root CA:
 
