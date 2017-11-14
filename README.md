@@ -1,30 +1,28 @@
 # Usage:
 
 ### 0. Get the required files:
-<br>
+
 Just type:
-<br>
+
 
     $ git clone https://github.com/daavelino/mini-pki-tools.git
-<br>
+
+
 or 
-<br>
+
 
     $ wget https://github.com/daavelino/mini-PKI-tools/archive/master.zip
-<br>
+
 
 or use the [Clone or Download](https://github.com/daavelino/mini-PKI-tools/archive/master.zip) github page.
-<br>
+
 
 ### 1. Creating the Root CA certificate:
-<br>
 It all starts by creating your own Root Certification Authority. This enables you to sign certificates and set up a trust network based on it:
-<br>
 
     $ ./createRootCA
 
    Now you own a **Root CA** and is apt to issue certificates to use into your internal/peers projects and test labs.
-<br>
 
 ### 2. Creating certificate sign requests (csr):
 
@@ -41,16 +39,15 @@ To generate the CSR file, type:
 
     $ ./csr <fqdn>
 
-   e.g.: ```$ ./csr www.domain.com```
+    e.g.: ```$ ./csr www.domain.com```
 
 <br>
 
    **(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
-<br>
 
     $ ./csr -w <domain fqdn>
 
-   e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
+    e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
 
 <br>
 
