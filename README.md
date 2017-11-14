@@ -21,6 +21,7 @@ It all starts by creating your own Root Certification Authority. This enables yo
 
    Now you own a **Root CA** and is apt to issue certificates to use into your internal/peers projects and test labs.
 
+
 ### 2. Creating certificate sign requests (csr):
 
 To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
@@ -47,7 +48,7 @@ To generate the CSR file, type:
 to create a request for **\*.domain.com**.
 
 **(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
-<br>
+
 
 ### 3. Issuing a certificate signed by our root CA:
 
@@ -60,11 +61,11 @@ Now it is time to sign the request using our CA:
 
    **(hint)**: notice that it requires a certificate sign request provided by step 2.
 
+
 ### 4. Revoking an issued certificate:
 
 If you notice that, for some reason, an issued certificate has been compromised (lost its private key confidentiality, for example), there is no reason to trust it anymore so, revoke it:
 
-<br>
 
     $ ./revoke <certificate file>
 
