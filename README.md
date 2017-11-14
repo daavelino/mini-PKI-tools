@@ -96,10 +96,12 @@ If you notice that, for some reason, an issued certificate has been compromised 
 * Add a configuration file to set default parameters like key size, cipher suite algorithms, etc and improve maintenance.
 
 <br>
+
 # Changelog:
 
 **Nov-2017:**
-* Now all issued certificates are stored at ```./certs/\<fqdn\>``` for clearness and to follow OpenSSL standards.
+
+* Now all issued certificates are stored at ```./certs/<fqdn>``` for clearness and to follow OpenSSL standards.
 
 * Also, the CA file structure is also following default OpenSSL, as indicated in openssl.conf.
 
@@ -115,7 +117,7 @@ Now it is possible to revocate any certificate issued by mini-PKI-tools and this
     $ checkCSR
     $ checkKey
 
-<br>
+
 into ```./certs/<fqdn>``` directory to see if everything is ok. 
 <br>
 
@@ -125,8 +127,10 @@ This way, it not necessary to check ```./conf``` files for default values. The c
 * Launching mini-PKI-tools basic features.
 
 <br>
+
 # mini PKI tools:
-<br>
+
+
 mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an its objective is to
 
     provide a set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
@@ -142,6 +146,7 @@ All certificates issued by mini PKI are already X509 **V3** (RFC 2818) compliant
 For your convinience, it also converts the **certificates into PEM (.pem) and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
 
 <br>
+
 ```
 Author: Daniel Avelino  <daavelino@gmail.com>
 
