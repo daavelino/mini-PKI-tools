@@ -39,7 +39,7 @@ To generate the CSR file, type:
 
     e.g.: $ ./csr www.domain.com
 
-   **(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
+>**(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
 
     $ ./csr -w <domain fqdn>
 
@@ -47,7 +47,7 @@ To generate the CSR file, type:
 
 to create a request for **\*.domain.com**.
 
-**(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
+>**(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
 
 >**(hint 3)**: If you need to generate **just** a CSR file, there is no need to create a root CA. Just type:
 
@@ -64,7 +64,7 @@ Now it is time to sign the request using our CA:
 
     e.g.: $ ./issue foo.domain.com
 
-   **(hint)**: notice that it requires a certificate sign request provided by step 2.
+>**(hint)**: notice that it requires a certificate sign request provided by step 2.
 
 
 ### 4. Revoking an issued certificate:
@@ -76,7 +76,7 @@ If you notice that, for some reason, an issued certificate has been compromised 
 
     e.g.: $ ./revoke ./certs/foo.domain.com/foo.domain.com.cer
 
-   **(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
+>**(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
 
 
 # TODO:
