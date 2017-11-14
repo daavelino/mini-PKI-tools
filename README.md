@@ -4,7 +4,6 @@
 
 Just type:
 
-
     $ git clone https://github.com/daavelino/mini-pki-tools.git
 
 or 
@@ -51,10 +50,9 @@ to create a request for **\*.domain.com**.
 <br>
 
 ### 3. Issuing a certificate signed by our root CA:
-<br>
+
 Now it is time to sign the request using our CA:
 
-<br>
 
     $ ./issue <fqdn>
 
@@ -62,9 +60,8 @@ Now it is time to sign the request using our CA:
 
    **(hint)**: notice that it requires a certificate sign request provided by step 2.
 
-<br>
 ### 4. Revoking an issued certificate:
-<br>
+
 If you notice that, for some reason, an issued certificate has been compromised (lost its private key confidentiality, for example), there is no reason to trust it anymore so, revoke it:
 
 <br>
