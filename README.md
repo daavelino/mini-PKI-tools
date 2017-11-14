@@ -89,13 +89,13 @@ If you notice that, for some reason, an issued certificate has been compromised 
 <br>
 
    **(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
-<br>
+
+
 # TODO:
 
 * Add MultiSAN certificate easy generation support.
 * Add a configuration file to set default parameters like key size, cipher suite algorithms, etc and improve maintenance.
 
-<br>
 
 # Changelog:
 
