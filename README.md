@@ -30,7 +30,7 @@ To properly issue a certificate, some information must to be provided in order t
 
 If your intention is to issue a certificate to a **www.domain.com** address, **remember to set Common Name as www.domain.com**.
 
-Otherwise, web browsers (and other User-Agents not RFC 2818 compliant) could not recognize it properly.
+Otherwise, some web browsers (and other User-Agents not RFC 2818 compliant) could not recognize it properly.
 
 To generate the CSR file, type:
  
