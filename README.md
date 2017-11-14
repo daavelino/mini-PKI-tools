@@ -39,8 +39,6 @@ To generate the CSR file, type:
 
     e.g.: $ ./csr www.domain.com
 
-<br>
-
    **(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
 
     $ ./csr -w <domain fqdn>
@@ -48,8 +46,6 @@ To generate the CSR file, type:
     e.g.: $ ./csr -w domain.com, 
 
 to create a request for **\*.domain.com**.
-
-<br>
 
 **(hint 2)**: It will fill the Full Qualified Domain Name (fqdn) into the **x509 Common Name** and **DNS** fields, as required by RFC 2818 and prevent `NET::ERR_CERT_COMMON_NAME_INVALID` browsers warning.
 <br>
@@ -64,8 +60,6 @@ Now it is time to sign the request using our CA:
 
     e.g.: $ ./issue foo.domain.com
 
-<br>
-
    **(hint)**: notice that it requires a certificate sign request provided by step 2.
 
 <br>
@@ -78,7 +72,6 @@ If you notice that, for some reason, an issued certificate has been compromised 
     $ ./revoke <certificate file>
 
     e.g.: $ ./revoke ./certs/foo.domain.com/foo.domain.com.cer
-<br>
 
    **(hint)**: The revoked certificate appears at ```./CA/crl/ca.crl``` file. Don't forget to **make it public** for peer information.
 
