@@ -133,7 +133,7 @@ This way, it not necessary to check ```./conf``` files for default values. The c
 
 mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an its objective is to
 
-    provide a set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
+>provide a set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
 
 <br>
 All certificates issued by mini PKI are already X509 **V3** (RFC 2818) compliant, so forget about
