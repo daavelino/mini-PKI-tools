@@ -45,7 +45,9 @@ To generate the CSR file, type:
 
     $ ./csr -w <domain fqdn>
 
-    e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
+    e.g.: ```$ ./csr -w domain.com```, 
+
+to create a request for **\*.domain.com**.
 
 <br>
 
