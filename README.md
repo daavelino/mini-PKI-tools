@@ -27,7 +27,7 @@ It all starts by creating your own Root Certification Authority. This enables yo
 <br>
 
 ### 2. Creating certificate sign requests (csr):
-<br>
+
 To properly issue a certificate, some information must to be provided in order to identify it with your organization and needs.
 
 >Special attention to **Common Name** field, since it must be the same as **Full Qualified Domain Name** if you are issue a Web certificate.
@@ -50,7 +50,6 @@ To generate the CSR file, type:
 
     $ ./csr -w <domain fqdn>
 
-
    e.g.: ```$ ./csr -w domain.com```, to create a request for **\*.domain.com**.
 
 <br>
@@ -65,8 +64,6 @@ Now it is time to sign the request using our CA:
 <br>
 
     $ ./issue <fqdn>
-
-
 
    e.g.: ```$ ./issue foo.domain.com```
 
@@ -117,19 +114,18 @@ Now it is possible to revocate any certificate issued by mini-PKI-tools and this
 
 
 into ```./certs/<fqdn>``` directory to see if everything is ok. 
-<br>
+
 
 This way, it not necessary to check ```./conf``` files for default values. The createRootCA procedure fill default values when create Root CA. But, it doesn't hurt to check it again. :D
 
 **Jun-2017:**
 * Launching mini-PKI-tools basic features.
 
-<br>
 
-# mini PKI tools:
+# About:
 
 
-mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an its objective is to
+Mini PKI tools is a set of **OpenSSL-based** Bash scripts (running Linux only), an its objective is to
 
 >provide a set of tools to simplify the task of create, issue and revoke x509 compliant digital certificates. 
 
@@ -138,11 +134,10 @@ All certificates issued by mini PKI are already X509 **V3** (RFC 2818) compliant
 `NET::ERR_CERT_COMMON_NAME_INVALID`
 
 ```SubjectAltName``` Chrome browser error.
-<br>
+
 
 For your convinience, it also converts the **certificates into PEM (.pem) and PKCS12 (.pfx) files**, so you don't have to worry about convert your certs anymore.
 
-<br>
 
 ```
 Author: Daniel Avelino  <daavelino@gmail.com>
