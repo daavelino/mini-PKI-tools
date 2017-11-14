@@ -39,6 +39,9 @@ To generate the CSR file, type:
 
     e.g.: $ ./csr www.domain.com
 
+and follow instructions.
+
+
 >**(hint)**: If you need to generate **WildCard** requests from some domain, use the ```-w``` parameter:
 
     $ ./csr -w <domain fqdn>
@@ -53,6 +56,7 @@ to create a request for **\*.domain.com**.
 
     $./csr <fqdn>
 
+and follow instructions.
 
 
 ### 3. Issuing a certificate signed by our root CA:
@@ -63,6 +67,8 @@ Now it is time to sign the request using our CA:
     $ ./issue <fqdn>
 
     e.g.: $ ./issue foo.domain.com
+
+and follow instructions.
 
 >**(hint)**: notice that it requires a certificate sign request provided by step 2.
 
