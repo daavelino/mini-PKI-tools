@@ -87,7 +87,7 @@ If you notice that, for some reason, an issued certificate has been compromised 
 
 # TODO:
 
-* Add MultiSAN certificate easy generation support.
+* ~~Add MultiSAN certificate easy generation support.~~
 * Add a configuration file to set default parameters like key size, cipher suite algorithms, etc and improve maintenance.
 
 
@@ -120,6 +120,9 @@ This way, it not necessary to check ```./conf``` files for default values. The c
 **Jun-2017:**
 * Launching mini-PKI-tools basic features.
 
+**Dec-2017:**
+
+* Adding multiSAN support. Now you can easily issue certificates with various FQDN (multi SAN) embeeded.
 
 # About:
 
