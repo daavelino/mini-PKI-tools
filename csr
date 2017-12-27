@@ -36,6 +36,44 @@ checkInput() {
   CADIR=$HOMEDIR/CA
 }
 
+getMultiSan() {
+  #### Prompts for other multi SAN entries:
+  (>&2 echo -e "\n\nWould you like to add other(s) FQDN (MultiSAN) to this request? [Y/n]")
+  while read -s -n1 answer; do
+    if [[ $answer == [Nn] ]]; then
+        return 1
+    elif [[ $answer == [Yy] ]]; then
+      (>&2 echo -e "\nPlease type all the desired FQDN separed by space:\n")
+      read -a multisan
+      break
+    else
+      ### The stdin is busy this case.
+      (>&2 echo -e "\n\nPlease type y or n:\n")
+    fi
+  done
+
+  (>&2 echo -e "Issuing also the following additional (MultiSAN) FQDN:\n\n")
+  for i in ${multisan[*]}; do
+    (>&2 echo -e "    $i")
+  done
+  (>&2 echo -e "\n\nAre you sure? [Y/n]\n\n")
+
+  while read -s -n1 answer; do
+    if [[ $answer == [Yy] ]]; then
+      break
+    elif [[ $answer == [Nn] ]]; then
+      #### start the process again:
+      getMultiSan
+    else
+      ### The stdin is busy this case.
+      (>&2 echo -e "\n\nPlease type y or n:\n")
+    fi  
+  done 
+
+  echo ${multisan[*]}
+}
+
+
 createStructure() {
   #### Creating directory structure:
   if [[ -d $HOMEDIR/certs/$fqdn ]]; then
@@ -63,6 +101,17 @@ createTmpConfigFile() {
     echo "DNS.1 = $fqdn" >> $CADIR/certs/$fqdn/openssl.cnf
   fi
 
+
+  #### Adding MultiSan to CSR
+  tmp=$( getMultiSan )
+
+  if [[ $tmp ]]; then
+    counter=2
+    for i in ${tmp[*]}; do
+      echo "DNS.$counter = $i" >> $CADIR/certs/$fqdn/openssl.cnf
+      counter=$(( $counter + 1 ))
+    done
+  fi
 }
 
 generateCSR() {
