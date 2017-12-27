@@ -9,7 +9,7 @@
 
 checkInput() {
 if [[ ! $1 ]]; then
-  echo "Usage $0 <fqdn>"
+  echo -e "\nUsage $0 <fqdn>\n"
   exit 1
 fi
 
@@ -49,6 +49,8 @@ openssl pkcs12 \
         -inkey $HOMEDIR/certs/$FQDN/$FQDN.key \
         -in $HOMEDIR/certs/$FQDN/$FQDN.cer \
         -certfile $HOMEDIR/CA/cacert.pem
+
+echo -e "\n\nPlease check \n\n    ./certs/$FQDN/ \n\ndirectory for all generated files.\n"
 }
 
 createVerify() {
