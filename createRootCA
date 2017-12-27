@@ -15,14 +15,28 @@
 createStructure() {
   #### Creating directory structure:
   if [[ -d $CADIR ]]; then
-    echo "Directory $CADIR exists and may contain important files. Please verify. Exiting."
-    exit -1
-  fi
+    echo "Directory $CADIR exists and may contain important files. Remove it? [Y/n]."
+
+    while read -s -n1 answer; do
+      if [[ $answer == [Nn] ]]; then
+        exit -1
+      elif [[ $answer == [Yy] ]]; then
+        rm -rf $CADIR
+        rm ./conf/ca-ssl-default.cnf
+        rm ./conf/ssl-default.cnf
   
+        break
+      else
+        (>&2 echo -e "\n\nPlease type y or n:\n") 
+      fi
+    done
+
+  fi
+
   mkdir -p $CADIR/private
   mkdir -p $CADIR/certs
-
 }
+
 
 setupCA() {
   #### Sets the default openssl.cnf x509 fields.
@@ -44,7 +58,7 @@ setupCA() {
   read emailAddress_default
 
   #### create ca-ssl-default.cnf file:
-  TEMPLATE=$HOMEDIR/conf/ca-ssl-default.cnf.tmpl
+  TEMPLATE=$HOMEDIR/conf/ca-ssl-default.conf.tmpl
   sed -e "s/@@_countryName_default_@@/$countryName_default/g" \
       -e "s/@@_stateOrProvinceName_default_@@/$stateOrProvinceName_default/g" \
       -e "s/@@_localityName_default_@@/$localityName_default/g" \
@@ -55,7 +69,7 @@ setupCA() {
       $TEMPLATE > $HOMEDIR/conf/ca-ssl-default.cnf
 
   #### create ssl-default.cnf file:
-  TEMPLATE=$HOMEDIR/conf/ssl-default.cnf.tmpl
+  TEMPLATE=$HOMEDIR/conf/ssl-default.conf.tmpl
   sed -e "s/@@_countryName_default_@@/$countryName_default/g" \
       -e "s/@@_stateOrProvinceName_default_@@/$stateOrProvinceName_default/g" \
       -e "s/@@_localityName_default_@@/$localityName_default/g" \
